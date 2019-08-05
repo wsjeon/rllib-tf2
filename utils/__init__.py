@@ -60,20 +60,9 @@ def renamed_agent(cls):
 
 
 def try_import_tf():
-    if "RLLIB_TEST_NO_TF_IMPORT" in os.environ:
-        logger.warning("Not importing TensorFlow for test purposes")
-        return None
-
-    try:
-        import tensorflow.compat.v1 as tf
-        tf.disable_v2_behavior()
-        return tf
-    except ImportError:
-        try:
-            import tensorflow as tf
-            return tf
-        except ImportError:
-            return None
+    logger.warning("Allow TensorFlow 2.0")
+    import tensorflow as tf
+    return tf
 
 
 __all__ = [
